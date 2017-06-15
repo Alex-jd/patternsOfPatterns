@@ -8,5 +8,7 @@ package service;
  *
  */
 public interface QuackObservable {
+	public void registerObserver (Observer observer);
+	
 
 }
