@@ -13,7 +13,7 @@ import service.QuackObservable;
 public class Quackologist implements Observer{
 	
 	public void update(QuackObservable duck) {
-		System.out.println("Quackologis: " + duck + " just quacked.");
+		System.out.println("Quackologis: " + duck.getClass().getName() + " just quacked.");
 	}
 
 }

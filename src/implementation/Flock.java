@@ -6,6 +6,7 @@ package implementation;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import service.Observer;
 import service.Quackable;
 
 /**
@@ -28,6 +29,42 @@ public class Flock implements Quackable{
 		while (iterator.hasNext()) {
 			Quackable quacker = (Quackable) iterator.next();
 			quacker.quack();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see service.QuackObservable#registerObserver(service.Observer)
+	 */
+	@Override
+	public void registerObserver(Observer observer) {
+		Iterator<Quackable> iterator = quackers.iterator();
+		while (iterator.hasNext()) {
+			Quackable quacker = (Quackable) iterator.next();
+			quacker.registerObserver(observer);
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see service.QuackObservable#notifyObservers()
+	 */
+	@Override
+	public void notifyObservers() {
+		Iterator<Quackable> iterator = quackers.iterator();
+		while (iterator.hasNext()) {
+			Quackable quacker = (Quackable) iterator.next();
+			quacker.notifyObservers();;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see service.QuackObservable#removeObserver(service.Observer)
+	 */
+	@Override
+	public void removeObserver(Observer observer) {
+		Iterator<Quackable> iterator = quackers.iterator();
+		while (iterator.hasNext()) {
+			Quackable quacker = (Quackable) iterator.next();
+			quacker.removeObserver(observer);
 		}
 	}
 	

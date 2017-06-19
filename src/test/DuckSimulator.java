@@ -54,6 +54,15 @@ public class DuckSimulator {
 				
 		System.out.println("The ducks quacked " +
 							QuackCounter.getQuacks() + " times");
+		
+		System.out.println("\nDuck simulator: With Observer");
+		Quackologist quackalogist = new Quackologist();
+		flockOfDucks.registerObserver(quackalogist);
+		
+		simulate(flockOfDucks);
+		
+		System.out.println("\nThe ducks quacked " + 
+							QuackCounter.getQuacks() + " times");
 	}
 	
 	void simulate(AbstractGeeseFactory geeseFactory) {

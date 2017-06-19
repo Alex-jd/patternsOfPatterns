@@ -3,6 +3,7 @@
  */
 package implementation;
 
+import service.Observer;
 import service.Quackable;
 
 /**
@@ -11,9 +12,11 @@ import service.Quackable;
  */
 public class GooseAdapter implements Quackable{
 	Goose goose;
+	Observable observable;
 	
 	public GooseAdapter(Goose goose) {
 		this.goose = goose;
+		observable = new Observable(this);
 	}
 
 	/* (non-Javadoc)
@@ -23,6 +26,30 @@ public class GooseAdapter implements Quackable{
 	public void quack() {
 		goose.honk();
 		
+	}
+	
+	/* (non-Javadoc)
+	 * @see service.QuackObservable#registerObserver(service.Observer)
+	 */
+	@Override
+	public void registerObserver(Observer observer) {
+		observable.registerObserver(observer);
+	}
+
+	/* (non-Javadoc)
+	 * @see service.QuackObservable#notifyObservers()
+	 */
+	@Override
+	public void notifyObservers() {
+		observable.notifyObservers();
+	}
+
+	/* (non-Javadoc)
+	 * @see service.QuackObservable#removeObserver()
+	 */
+	@Override
+	public void removeObserver(Observer observer) {
+		observable.removeObserver(observer);
 	}
 
 }
